@@ -44,9 +44,9 @@ public class VehiculosController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<VehiculosDTO> eliminar(@PathVariable Long id, @RequestHeader("id") Integer integer){
+    public ResponseEntity<VehiculosDTO> eliminar(@PathVariable Long id, @RequestHeader("usuario") String usuario){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(vehiculosServiceIn.deleteIn(id));
+                .body(vehiculosServiceIn.deleteIn(id, usuario));
     }
 }

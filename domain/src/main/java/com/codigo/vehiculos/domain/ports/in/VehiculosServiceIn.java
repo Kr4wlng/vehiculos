@@ -10,5 +10,5 @@ public interface VehiculosServiceIn {
     VehiculosDTO obtenerVehiculoIn(Long id);
     List<VehiculosDTO> obtenerTodosIn();
     VehiculosDTO actualizarIn(Long id, VehiculosDTO vehiculosDTO);
-    VehiculosDTO deleteIn(Long id);
+    VehiculosDTO deleteIn(Long id, String usuario);
 }

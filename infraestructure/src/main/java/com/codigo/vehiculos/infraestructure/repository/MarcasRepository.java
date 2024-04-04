@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface MarcasRepository extends JpaRepository<MarcasEntity, Long> {
-    MarcasEntity findByidMarca(@Param("idMarca") Long idMarca);
+    MarcasEntity findByEstado(@Param("idMarca") Long idMarca);
 
 }

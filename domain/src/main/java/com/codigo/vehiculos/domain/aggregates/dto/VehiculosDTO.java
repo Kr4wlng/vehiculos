@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -17,8 +20,8 @@ public class VehiculosDTO {
     private Integer anioFabricacion;
     private String color;
     private Integer transmision;
-    private Integer idTipoVehiculo;
-    private Integer idMarca;
+    private TipoVehiculoDTO tipoVehiculo;
+    private MarcasDTO marca;
     private Float costoAlquiler;
     private Integer estado;
     private String usuarioCreate;
@@ -27,4 +30,5 @@ public class VehiculosDTO {
     private Timestamp dateUpdate;
     private String usuarioDelete;
     private Timestamp dateDelete;
+    private Set<TipoCombustibleDTO> listTipoCombustible = new HashSet<>();
 }

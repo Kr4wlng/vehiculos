@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface TipoVehiculoRepository extends JpaRepository<TipoVehiculoEntity, Long> {
-    TipoVehiculoEntity findByidTipoVehiculo(@Param("idTipoVehiculo") Long idTipoVehiculo);
+    TipoVehiculoEntity findByEstado(@Param("estado") Integer estado);
 }

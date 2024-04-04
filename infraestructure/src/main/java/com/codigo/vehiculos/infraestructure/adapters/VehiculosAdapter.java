@@ -9,15 +9,17 @@ import com.codigo.vehiculos.infraestructure.repository.MarcasRepository;
 import com.codigo.vehiculos.infraestructure.repository.TipoCombustibleRepository;
 import com.codigo.vehiculos.infraestructure.repository.TipoVehiculoRepository;
 import com.codigo.vehiculos.infraestructure.repository.VehiculosRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
-@RequiredArgsConstructor
+/* @RequiredArgsConstructor */
+@AllArgsConstructor
 public class VehiculosAdapter implements VehiculosServiceOut {
 
     private final VehiculosRepository vehiculosRepository;
@@ -54,16 +56,16 @@ public class VehiculosAdapter implements VehiculosServiceOut {
             vehiculosRepository.save(vehiculosEntity);
             return vehiculosMapper.mapTopDto(vehiculosEntity);
         }
-        return null
+        return null;
     }
 
     @Override
-    public VehiculosDTO deleteOut(Long id) {
+    public VehiculosDTO deleteOut(Long id, String usuario) {
         if (vehiculosRepository.existsById(id)){
             Optional<VehiculosEntity> entity=vehiculosRepository.findById(id);
             entity.get().setEstado(Constants.STATUS_INACTIVE);
             entity.get().setDateDelete(getTimestamp());
-            entity.get().setUsuarioDelete(id);
+            entity.get().setUsuarioDelete(usuario);
             vehiculosRepository.save(entity.get());
             return vehiculosMapper.mapTopDto(entity.get());
         }

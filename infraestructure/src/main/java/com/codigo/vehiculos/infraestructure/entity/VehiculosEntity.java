@@ -1,12 +1,16 @@
 package com.codigo.vehiculos.infraestructure.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
-@NamedQuery(name = "VeiculosEntity.findByEstado", query = "SELECT a FROM VehiculosEntity a where a.estado=:estado")
+
+/* @NamedQuery(name = "VeiculosEntity.findByEstado", query = "SELECT a FROM VehiculosEntity a where a.estado=:estado") */
 @Entity
 @Getter
 @Setter
@@ -16,36 +20,42 @@ public class VehiculosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vehiculo")
     private Long idVehiculo;
-    @Column(name = "codigo")
+    @Column(name = "codigo", nullable = false)
     private String codigo;
-    @Column(name = "placa")
+    @Column(name = "placa", nullable = false)
     private String placa;
-    @Column (name = "asientos")
+    @Column (name = "asientos", nullable = false)
     private Integer asientos;
-    @Column (name = "anio_fabricacion")
+    @Column (name = "anio_fabricacion", nullable = false)
     private Integer anioFabricacion;
-    @Column (name = "color")
+    @Column (name = "color", length = 10)
     private String color;
-    @Column (name = "transmision")
+    @Column (name = "transmision", nullable = false)
     private Integer transmision;
-    @Column (name = "id_tipo_vehiculo")
-    private Integer idTipoVehiculo;
-    @Column (name = "id_marca")
-    private Integer idMarca;
-    @Column (name = "costo_alquiler")
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_vehiculo")
+    private TipoVehiculoEntity tipoVehiculo;
+    @ManyToOne
+    @JoinColumn(name = "id_marca")
+    private MarcasEntity marca;
+    @Column (name = "costo_alquiler", nullable = false)
     private Float costoAlquiler;
     @Column (name = "estado")
     private Integer estado;
-    @Column (name = "usuario_create")
+    @Column (name = "usuario_create", length = 10)
     private String usuarioCreate;
     @Column (name = "date_create")
     private Timestamp dateCreate;
-    @Column (name = "usuario_update")
+    @Column (name = "usuario_update", length = 10)
     private String usuarioUpdate;
     @Column (name = "date_update")
     private Timestamp dateUpdate;
-    @Column(name = "usuario_delete")
+    @Column(name = "usuario_delete", length = 10)
     private String usuarioDelete;
     @Column (name = "date_delete")
     private Timestamp dateDelete;
+    @Builder.Default
+    @ManyToMany
+    @JoinTable(name = "vehiculos_tipo_combustible", joinColumns = @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo"), inverseJoinColumns = @JoinColumn(name = "id_tipo_combustible", referencedColumnName = "id_tipo_combustible"))
+    private Set<TipoCombustibleEntity> listTipoCombustible = new HashSet<>();
 }

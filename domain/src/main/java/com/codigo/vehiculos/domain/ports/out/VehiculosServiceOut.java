@@ -10,5 +10,5 @@ public interface VehiculosServiceOut {
     Optional<VehiculosDTO> obtenerVehiculoOut(Long id);
     List<VehiculosDTO> obtenerTodosOut();
     VehiculosDTO actualizarOut(Long id, VehiculosDTO vehiculosDTO);
-    VehiculosDTO deleteOut(Long id);
+    VehiculosDTO deleteOut(Long id, String usuario);
 }

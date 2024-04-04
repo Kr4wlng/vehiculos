@@ -3,15 +3,17 @@ package com.codigo.vehiculos.domain.impl;
 import com.codigo.vehiculos.domain.aggregates.dto.VehiculosDTO;
 import com.codigo.vehiculos.domain.ports.in.VehiculosServiceIn;
 import com.codigo.vehiculos.domain.ports.out.VehiculosServiceOut;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class VehiculosServiceImpl implements VehiculosServiceIn {
 
-    private VehiculosServiceOut vehiculosServiceOut;
+    private final VehiculosServiceOut vehiculosServiceOut;
 
     @Override
     public VehiculosDTO crearVehiculoIn(VehiculosDTO vehiculosDTO) {
@@ -38,7 +40,7 @@ public class VehiculosServiceImpl implements VehiculosServiceIn {
     }
 
     @Override
-    public VehiculosDTO deleteIn(Long id) {
-        return vehiculosServiceOut.deleteOut(id);
+    public VehiculosDTO deleteIn(Long id, String usuario) {
+        return vehiculosServiceOut.deleteOut(id, usuario);
     }
 }

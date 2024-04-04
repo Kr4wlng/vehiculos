@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface VehiculosRepository extends JpaRepository<VehiculosEntity, Long> {
-    List<VehiculosEntity> findById(@Param("id") Integer id);
+    List<VehiculosEntity> findByEstado(@Param("estado") Integer estado);
 }

@@ -3,6 +3,7 @@ package com.codigo.vehiculos.infraestructure.mapper;
 import com.codigo.vehiculos.domain.aggregates.dto.VehiculosDTO;
 import com.codigo.vehiculos.infraestructure.entity.VehiculosEntity;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
